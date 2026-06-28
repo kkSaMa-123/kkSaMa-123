@@ -1,22 +1,39 @@
 # kkSaMa-123 的博客
 
-这是一个纯静态个人博客，适合部署到 GitHub Pages。
+这是一个 Jekyll Markdown 个人博客，适合部署到 GitHub Pages。
 
 ## 本地预览
 
-直接打开 `index.html`，或运行：
+安装 Ruby/Jekyll 环境后运行：
 
 ```bash
-python3 -m http.server 8080
+bundle exec jekyll serve
 ```
 
-然后访问 `http://localhost:8080`。
+然后访问 `http://localhost:4000/kkSaMa-123/`。
 
 ## 新增文章
 
-1. 复制 `posts/start.html`，改成新的文章文件名。
-2. 修改新文件里的标题、日期、分类和正文。
-3. 在 `posts.js` 顶部新增一条文章记录。
+在 `_posts` 目录里新建 Markdown 文件，文件名格式：
+
+```text
+YYYY-MM-DD-title.md
+```
+
+文章开头写 front matter：
+
+```md
+---
+title: "文章标题"
+date: 2026-06-28
+category: "学习笔记"
+excerpt: "首页文章卡片上显示的摘要。"
+---
+
+正文从这里开始。
+```
+
+推送到 `main` 分支后，GitHub Pages 会自动构建并发布。
 
 ## 发布到 GitHub Pages
 

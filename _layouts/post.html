@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+<main class="article">
+  <p class="article-meta">
+    {{ page.date | date: "%Y-%m-%d" }}
+    {% if page.category %} / {{ page.category }}{% endif %}
+  </p>
+  <h1>{{ page.title }}</h1>
+  <div class="article-body">
+    {{ content }}
+  </div>
+</main>

@@ -1,80 +1,47 @@
-<!doctype html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>kkSaMa-123 的博客</title>
-    <meta
-      name="description"
-      content="kkSaMa-123 的个人博客，记录文章、观察、技术笔记与长期思考。"
-    />
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <a class="brand" href="./">kkSaMa-123</a>
-      <nav class="nav" aria-label="主导航">
-        <a href="#articles">文章</a>
-        <a href="https://github.com/kkSaMa-123">GitHub</a>
-      </nav>
-    </header>
+---
+layout: default
+---
 
-    <main>
-      <section class="hero" aria-label="博客介绍">
-        <img src="assets/hero-writing-desk.png" alt="" />
-        <div class="hero-copy">
-          <p class="eyebrow">Personal Blog</p>
-          <h1>把文章、观察和想法认真放在这里。</h1>
-          <p>
-            这里会收集我的技术记录、读书笔记、项目复盘和一些更慢的思考。
-          </p>
-        </div>
-      </section>
+<main>
+  <section class="hero" aria-label="博客介绍">
+    <img src="{{ '/assets/hero-writing-desk.png' | relative_url }}" alt="" />
+    <div class="hero-copy">
+      <p class="eyebrow">Personal Blog</p>
+      <h1>把文章、观察和想法认真放在这里。</h1>
+      <p>
+        这里会收集我的技术记录、读书笔记、项目复盘和一些更慢的思考。
+      </p>
+    </div>
+  </section>
 
-      <section class="intro" aria-label="关于这个博客">
-        <p>
-          写作是给未来的自己留线索。短的记录可以轻一点，长的文章可以慢一点，
-          但每一篇都尽量说清楚一个问题。
-        </p>
-      </section>
+  <section class="intro" aria-label="关于这个博客">
+    <p>
+      写作是给未来的自己留线索。短的记录可以轻一点，长的文章可以慢一点，
+      但每一篇都尽量说清楚一个问题。
+    </p>
+  </section>
 
-      <section class="articles" id="articles" aria-label="文章列表">
-        <div class="section-heading">
-          <p class="eyebrow">Articles</p>
-          <h2>最新文章</h2>
-        </div>
-        <div class="post-grid" id="postGrid"></div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <span>© <span id="year"></span> kkSaMa-123</span>
-      <a href="./">返回首页</a>
-    </footer>
-
-    <script src="posts.js"></script>
-    <script>
-      const grid = document.querySelector("#postGrid");
-      const year = document.querySelector("#year");
-      year.textContent = new Date().getFullYear();
-
-      grid.innerHTML = posts
-        .map(
-          (post) => `
-            <article class="post-card">
-              <div>
-                <p class="post-meta">${post.date} / ${post.category}</p>
-                <h3><a href="${post.url}">${post.title}</a></h3>
-                <p>${post.excerpt}</p>
-              </div>
-              <a class="read-more" href="${post.url}" aria-label="阅读 ${post.title}">
-                阅读
-              </a>
-            </article>
-          `
-        )
-        .join("");
-    </script>
-  </body>
-</html>
+  <section class="articles" id="articles" aria-label="文章列表">
+    <div class="section-heading">
+      <p class="eyebrow">Articles</p>
+      <h2>最新文章</h2>
+    </div>
+    <div class="post-grid">
+      {% for post in site.posts %}
+        <article class="post-card">
+          <div>
+            <p class="post-meta">
+              {{ post.date | date: "%Y-%m-%d" }}
+              {% if post.category %} / {{ post.category }}{% endif %}
+            </p>
+            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+            <p>{{ post.excerpt | strip_html | normalize_whitespace | truncate: 92 }}</p>
+          </div>
+          <a class="read-more" href="{{ post.url | relative_url }}" aria-label="阅读 {{ post.title }}">
+            阅读
+          </a>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+</main>
