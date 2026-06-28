@@ -70,41 +70,6 @@ a:hover {
   text-decoration: none;
 }
 
-.hero {
-  position: relative;
-  display: grid;
-  align-items: end;
-  min-height: clamp(520px, 72vh, 760px);
-  overflow: hidden;
-  background: #111;
-}
-
-.hero::after {
-  position: absolute;
-  inset: 0;
-  content: "";
-  background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.12) 70%),
-    linear-gradient(0deg, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0));
-}
-
-.hero img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hero-copy {
-  position: relative;
-  z-index: 1;
-  width: min(1120px, calc(100% - 40px));
-  margin: 0 auto;
-  padding: 0 0 96px;
-  color: #fff;
-}
-
 .eyebrow {
   margin: 0 0 10px;
   color: var(--warm);
@@ -114,94 +79,95 @@ a:hover {
   text-transform: uppercase;
 }
 
-.hero-copy h1 {
-  max-width: 720px;
-  margin: 0;
-  font-size: clamp(42px, 7vw, 82px);
-  line-height: 1.04;
-}
-
-.hero-copy p:last-child {
-  max-width: 600px;
-  margin: 24px 0 0;
-  color: rgba(255, 255, 255, 0.88);
-  font-size: 18px;
-}
-
-.intro,
-.articles,
+.home-shell,
 .article {
-  width: min(960px, calc(100% - 40px));
+  width: min(1120px, calc(100% - 40px));
   margin: 0 auto;
 }
 
-.intro {
-  padding: 72px 0 36px;
-  font-size: clamp(22px, 3vw, 34px);
-  line-height: 1.45;
+.home-shell {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(0, 2fr);
+  gap: clamp(36px, 6vw, 80px);
+  align-items: start;
+  padding: clamp(56px, 9vw, 104px) 0 96px;
 }
 
-.articles {
-  padding: 72px 0 96px;
+.profile-panel {
+  position: sticky;
+  top: 28px;
+  min-width: 0;
 }
 
-.section-heading {
+.avatar {
+  display: block;
+  width: min(168px, 52vw);
+  aspect-ratio: 1;
+  margin-bottom: 28px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  object-fit: cover;
+}
+
+.profile-panel h1 {
+  margin: 0;
+  font-size: clamp(38px, 6vw, 62px);
+  line-height: 1;
+}
+
+.profile-bio {
+  max-width: 320px;
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.profile-links {
   display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 26px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.list-heading {
+  padding-bottom: 18px;
   border-bottom: 1px solid var(--line);
 }
 
-.section-heading h2 {
-  margin: 0 0 14px;
-  font-size: 28px;
+.list-heading h2 {
+  margin: 0;
+  font-size: 32px;
 }
 
-.post-grid {
+.post-list {
+  border-bottom: 1px solid var(--line);
+}
+
+.post-row {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  grid-template-columns: 116px minmax(0, 1fr);
+  gap: 24px;
+  align-items: baseline;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
 }
 
-.post-card {
-  display: flex;
-  min-height: 240px;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 24px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--surface);
-  box-shadow: 0 8px 24px rgba(32, 36, 42, 0.04);
-}
-
-.post-meta,
+.post-row time,
 .article-meta {
-  margin: 0 0 12px;
+  margin: 0;
   color: var(--muted);
   font-size: 13px;
 }
 
-.post-card h3 {
-  margin: 0 0 12px;
-  font-size: 24px;
-  line-height: 1.22;
-}
-
-.post-card p {
-  margin-top: 0;
-  color: var(--muted);
-}
-
-.read-more {
-  display: inline-flex;
-  align-items: center;
-  width: fit-content;
-  min-height: 36px;
-  color: var(--accent);
-  font-weight: 700;
+.post-row h3 {
+  margin: 0;
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.2;
 }
 
 .article {
@@ -315,32 +281,37 @@ a:hover {
     gap: 16px;
   }
 
-  .hero {
-    min-height: 560px;
-  }
-
-  .hero::after {
-    background:
-      linear-gradient(90deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.24)),
-      linear-gradient(0deg, rgba(0, 0, 0, 0.44), rgba(0, 0, 0, 0));
-  }
-
-  .hero-copy,
-  .intro,
-  .articles,
+  .home-shell,
   .article {
-    width: min(100% - 28px, 960px);
+    width: min(100% - 28px, 1120px);
   }
 
-  .hero-copy {
-    padding-bottom: 64px;
-  }
-
-  .post-grid {
+  .home-shell {
     grid-template-columns: 1fr;
+    gap: 44px;
+    padding: 38px 0 72px;
   }
 
-  .post-card {
-    min-height: 220px;
+  .profile-panel {
+    position: static;
+  }
+
+  .avatar {
+    width: 112px;
+    margin-bottom: 22px;
+  }
+
+  .profile-bio {
+    max-width: none;
+  }
+
+  .post-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 18px 0;
+  }
+
+  .post-row h3 {
+    font-size: 22px;
   }
 }
