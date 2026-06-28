@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>开始写这个博客 - kksama 的博客</title>
+    <meta
+      name="description"
+      content="kksama 的第一篇博客文章，说明这个博客会如何记录文章与想法。"
+    />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../">kksama</a>
+      <nav class="nav" aria-label="主导航">
+        <a href="../#articles">文章</a>
+        <a href="https://github.com/kksama">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="article">
+      <p class="article-meta">2026-06-28 / 随笔</p>
+      <h1>开始写这个博客</h1>
+      <div class="article-body">
+        <p>
+          这是这个博客的第一篇文章。与其等到所有栏目、主题和写作计划都完美，
+          不如先拥有一个可以稳定发布的地方。
+        </p>
+        <p>
+          我会在这里整理一些相关文章：技术实践、读书笔记、项目复盘，以及那些
+          暂时还不能归类、但值得留下来的观察。
+        </p>
+        <h2>写作的节奏</h2>
+        <p>
+          这个站点会保持轻量。每一篇文章都是一个独立的 HTML 文件，首页列表由
+          <code>posts.js</code> 管理。后续新增文章时，只需要复制这页作为模板，
+          修改标题和正文，再往文章列表里加一条记录。
+        </p>
+        <blockquote>
+          先让内容可以被看见，再让形式慢慢变好。
+        </blockquote>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <span>© <span id="year"></span> kksama</span>
+      <a href="../">返回首页</a>
+    </footer>
+    <script>
+      document.querySelector("#year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
