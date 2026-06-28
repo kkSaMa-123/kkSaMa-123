@@ -1,4 +1,4 @@
-# kksama 的博客
+# kkSaMa-123 的博客
 
 这是一个纯静态个人博客，适合部署到 GitHub Pages。
 
