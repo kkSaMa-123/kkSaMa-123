@@ -79,8 +79,7 @@ a:hover {
   text-transform: uppercase;
 }
 
-.home-shell,
-.article {
+.home-shell {
   width: min(1120px, calc(100% - 40px));
   margin: 0 auto;
 }
@@ -171,10 +170,20 @@ a:hover {
 }
 
 .article {
+  display: grid;
+  width: min(1120px, calc(100% - 40px));
+  grid-template-columns: minmax(0, 760px) minmax(200px, 260px);
+  gap: clamp(36px, 6vw, 72px);
+  align-items: start;
+  margin: 0 auto;
   padding: 68px 0 96px;
 }
 
-.article h1 {
+.article-main {
+  min-width: 0;
+}
+
+.article-main h1 {
   max-width: 780px;
   margin: 0 0 20px;
   font-size: clamp(38px, 6vw, 64px);
@@ -185,6 +194,11 @@ a:hover {
   max-width: 760px;
   margin-top: 48px;
   font-size: 18px;
+}
+
+.article-body h2,
+.article-body h3 {
+  scroll-margin-top: 24px;
 }
 
 .article-body h2 {
@@ -260,6 +274,47 @@ a:hover {
   color: var(--muted);
 }
 
+.article-toc {
+  position: sticky;
+  top: 28px;
+  padding-top: 4px;
+}
+
+.toc-title {
+  margin: 0 0 12px;
+  color: var(--warm);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.toc-list {
+  display: flex;
+  max-height: calc(100vh - 120px);
+  flex-direction: column;
+  gap: 4px;
+  overflow: auto;
+  padding: 0 0 0 14px;
+  border-left: 1px solid var(--line);
+}
+
+.toc-link {
+  display: block;
+  padding: 4px 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.toc-link:hover {
+  color: var(--accent-strong);
+}
+
+.toc-h3 {
+  padding-left: 14px;
+}
+
 .footer {
   min-height: 84px;
   border-top: 1px solid var(--line);
@@ -281,9 +336,15 @@ a:hover {
     gap: 16px;
   }
 
-  .home-shell,
+  .home-shell {
+    width: min(100% - 28px, 1120px);
+  }
+
   .article {
     width: min(100% - 28px, 1120px);
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 48px 0 72px;
   }
 
   .home-shell {
@@ -294,6 +355,24 @@ a:hover {
 
   .profile-panel {
     position: static;
+  }
+
+  .article-toc {
+    position: static;
+    order: -1;
+  }
+
+  .article-main {
+    display: contents;
+  }
+
+  .article-main > .article-meta,
+  .article-main > h1 {
+    order: -2;
+  }
+
+  .toc-list {
+    max-height: 240px;
   }
 
   .avatar {
